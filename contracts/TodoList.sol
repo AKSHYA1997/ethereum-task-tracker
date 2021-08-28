@@ -12,6 +12,13 @@ contract TodoList {
     //Mapping (key => value)
     mapping(uint => Task) public tasks;
 
+    //Its like getter
+    event TaskCreated(
+        uint id,
+        string content,
+        bool completed
+    );
+
     constructor() public {
         createTask("This is first task");
     }
@@ -21,5 +28,6 @@ contract TodoList {
         //tasks => mappings
         //Task => struct
         tasks[taskCount] =Task(taskCount, _content, false);
+        emit TaskCreated(taskCount, _content, false);
     }
 }
